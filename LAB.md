@@ -1,168 +1,63 @@
-![CF](http://i.imgur.com/7v5ASc8.png) LAB
-=================================================
+# LAB: Async
 
-## Lab 02
+## Submission Instructions
+* Follow the core submission instructions
 
-### Author: Joseph Wolfe
+### Before you begin
+* You'll need to initialize this lab folder as a new node module, install your dependencies, setup your npm script commands, and pull in your config files
 
-### Links and Resources
-* [repo](https://github.com/charmedsatyr-401-advanced-javascript/lab-02)
-* [travis](https://travis-ci.org/charmedsatyr-401-advanced-javascript/lab-02)
+## Assignment 1: Read and write to a file
+There's a file called "test.txt" in the files folder of this lab
+Write a node application, called `edit-file.js` in the root of your project that:
 
-#### Documentation
-* [lab assignment](https://github.com/codefellows/seattle-javascript-401d29/blob/master/curriculum/class-02/lab/README.md)
+  * Use the node `fs` module
+  * Accepts a file name as a command line parameter
+  * Reads in the contents of the file specified with the CLI (test it out with that test.txt file)
+  * Creates a random value (using Math.random() or maybe faker()
+  * Puts that random value into the file
+  * Save the file
+  * Re-Open and read the file contents
+  * Emit a `console.log()` that shows the contents before and after the operations are completed.
 
-### Modules
-* `list-class.js`
-* `list-constructor.js`
-* `flying-vehicle-class.js`
-* `flying-vehicle-constructor.js`
-* `flying-vehicle-factory.js`
-* `sea-creature-class.js`
-* `sea-creature-constructor.js`
-* `sea-creature-factory.js`
-* `vehicle-class.js`
-* `vehicle-constructor.js`
-* `vehicle-factory.js`
-##### Exported Values and Methods from `list-class.js` and `list-constructor.js`
+## Assignment 2: Read Multiple Files, In Order, Multiple ways
+In your lab folder, you'll find an `index.js` file that calls on a library file: `lib/reader.js`
+In the files folder, you'll see 3 files: `1.txt, 2.txt, 3.txt`
+* The index.file should accept filenames as parameters from the command line and then invoke the reader function with an error first callback to read in the 3 files, and `console.log()` their contents (the `data`)
+* The reader library should be reading in the files given to it in order and returning back an array of contents from those files.
+* You should also be able to run npm test and have the reader test file run against that same library to make the same assertion.
 
-###### `List`
-* `{ length: 0, data: {} }`
+### Task 1: Fix the broken code
+* None of the above actually works.
+* Make a copy of the reader.js library called `reader-fixed.js`
+* Fix the library so that the files are read in the order specified on the command line AND returns an array of their contents in that same order.
+* Once you do this, index.js should give you the right content and your tests should pass!
 
-###### `List.push(item)`
-* `List.push('a')` -> `{ length: 1, data: { '0': 'a' } }`
-
-###### `List.pop()`
-* Based on Array method.
-
-###### `List.shift()`
-
-###### `List.unshift(item)`
-
-###### `List.unshift(item)`
-
-###### `List.forEach(item)`
-
-###### `List.map(item)`
-
-###### `List.filter(item)`
-
-###### `List.reduce(item)`
-
-##### Exported Values and Methods from `flying-vehicle-class.js`, `flying-vehicle-constructor.js` and `flying-vehicle-factory.js`
-###### `FlyingVehicle`
-
-###### `FlyingVehicle.fly()`
-
-###### `FlyingVehicle.stop()`
-
-###### `FlyingVehicle.Airplane()`
-
-###### `FlyingVehicle.Airplane.stop`
-
-###### `FlyingVehicle.Helicopter`
-
-###### `FlyingVehicle.Helicopter.hover()`
-
-##### Exported Values and Methods from `sea-creature-class.js`, `sea-creature-constructor.js` and `sea-creature-factory.js`
-###### `SeaCreature`
-
-###### `SeaCreature.swim()`
-
-###### `SeaCreature.hide()`
-
-###### `SeaCreature.Fish`
-
-###### `SeaCreature.Lobster`
-
-###### `SeaCreature.Lobster.pinch()`
-
-###### `SeaCreature.Helicopter.hover()`
-
-##### Exported Values and Methods from `vehicle-class.js`, `vehicle-constructor.js` and `vehicle-factory.js`
-###### `Vehicle`
-
-###### `Vehicle.drive()`
-
-###### `Vehicle.stop()`
-
-###### `Vehicle.Car`
-
-###### `Vehicle.Motorcycle`
-
-###### `Vehicle.Motorcycle.wheelie()`
+### Refactoring Task 2: Use promises to read 3 files
+* Make a copy of the reader.js library called `reader-promises.js`
+* Make a copy of the reader.test.js library called `reader-promises.test.js`
+* In this new file, convert the code you fixed in task 1 to use promises to read in 3 files instead of callbacks
+  * HINT: Use util.promisify() to make fs.readFile work like a promise ...
+* You'll need to change the tests to work with promises instead of callbacks.
 
 
-### Setup
-#### Running the app
-* N/A
-  
-#### Tests
-* How do you run tests?
-  
-  `npm run test` 
-  
-  `npm run watch`
-* What assertions were made?
 
-`list-class.js` and `list-constructor.js`
-1. It starts with a length of -1 and an empty data set 
-2. It push(item) pushes items to the end of the data set 
-3. It push(item) requires an argument 
-4. It pop() removes items off the end of the data set 
-5. It unshift(item) adds items to the beginning of the data set 
-6. It unshift(item) requires an argument 
-7. It shift() removes an item from the beginning of the data set 
-8. It shift() returns the value of the first item in the data set 
-9. It forEach(cb) executes a callback forEach item in the data set 
-10. It forEach(cb) requires a callback function 
-11. It map(cb) executes a callback on each item in the data set and returns a new set of the results 
-12. It map(cb) requires a callback function 
-13. It filter(cb) executes a callback on each item in the data set and returns a new set of all items that returned truthy 
-14. It filter(cb) requires a callback function 
-15. It reduce(cb) executes a callback against an acculmulator and each item in the data set and returns a single item 
-16. It reduce(cb) requires a callback function 
- 
-`flying-vehicle-class.js`, `flying-vehicle-constructor.js`, and `flying-vehicle-factory.js`
-* Airplane
-1. It has 2 wings
-2. It can fly
-3. It cannot stop
+## Stretch Goals
+### Use `Promise.all()` to read an array files
+* Make a copy of the reader.js library called `reader-promise-all.js`
+* Make a copy of the reader.test.js library called `reader-promise-all.test.js`
+* In this new file, convert the code you fixed in task 2 to use an array promises to read in any number of files
+* You'll need to change the tests to have more wide assertions
 
-* Helicopter
-1. It has 0 wings
-2. It can fly
-3. It can stop
-4. It can hover
+### Use callbacks to read an array of files
+* Make a copy of the reader.js library called `reader-callbacks-array.js`
+* Make a copy of the reader.test.js library called `reader-callbacks-array.test.js`
+* In this new file, convert the code you fixed in task 1 to run with any number of files.
+* You'll need to change the tests to assert on 1, 2, 3, + files
 
-`sea-creature-class`, `sea-creature-constructor.js`, and `sea-creature-factory.js`
-* Fish
-1. It has 8 fins
-2. It can swim
-3. It can hide
-4. It cannot pinch
 
-* Lobster
-1. It has 2 claws
-2. It can swim
-3. It can hide
-4. It can pinch
+##  Documentation
+In your README.md describe the exported values of each module you have defined. Every function description should include it's airty (expected number of parameters), the expected data for each paramiter (data-type and limitations), and it's behavior (for both valid and invalued use). Feel free to write any additional information in your README.md.
 
-`vehicle-class.js`, `vehicle-constructor.js`, and `vehicle-factory.js`
-* Car
-1. It has 4 wheels
-2. It can drive
-3. It can stop
-4. It cannot do a wheelie
+### Assignemnt Submission Instructions
+Refer to the [lab-instructions.md](../../../reference/submission-instructions/labs) for the complete lab submission process and expectations
 
-* Motorcycle
-1. It has 2 wheels
-2. It can drive
-3. It can stop
-4. It cannot do a wheelie
-
-* What assertions need to be / should be made?
-TBD. Documentation should be improved.
-
-#### UML
-N/A
