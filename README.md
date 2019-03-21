@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/charmedsatyr-401-advanced-javascript/lab-03.svg?branch=master)](https://travis-ci.org/charmedsatyr-401-advanced-javascript/lab-03)
+
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
