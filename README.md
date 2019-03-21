@@ -47,6 +47,7 @@
    2. It reads 3 files.
 
 * What assertions need to be / should be made?
+
   It should have improved tests for reader-promises.
 
 #### UML
